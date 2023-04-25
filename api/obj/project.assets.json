@@ -1728,11 +1728,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/reghanhandley/Desktop/GroupProject/mis321-groupProject2/api/api.csproj",
+      "projectUniqueName": "/Users/reghanhandley/Desktop/TEAProject/api/api.csproj",
       "projectName": "api",
-      "projectPath": "/Users/reghanhandley/Desktop/GroupProject/mis321-groupProject2/api/api.csproj",
+      "projectPath": "/Users/reghanhandley/Desktop/TEAProject/api/api.csproj",
       "packagesPath": "/Users/reghanhandley/.nuget/packages/",
-      "outputPath": "/Users/reghanhandley/Desktop/GroupProject/mis321-groupProject2/api/obj/",
+      "outputPath": "/Users/reghanhandley/Desktop/TEAProject/api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/reghanhandley/.nuget/NuGet/NuGet.Config"

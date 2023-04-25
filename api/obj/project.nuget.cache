@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3cyXYRU+oAJaiKH40KCrPaKlIUcaJa+v0RDP9RAraID3xj3CaVVObCg6aWAR9eAJCWSAjxQIsA1RWK19HzRE1g==",
+  "dgSpecHash": "DUt90KYNi6xq6ncNaFitIuq2oC6jin2ojOy0M9yDEbeRLEoSHIs/cgCZcdNZu2FiBqZ8JyEvg0QnJTozvvzzyQ==",
   "success": true,
-  "projectFilePath": "/Users/reghanhandley/Desktop/GroupProject/mis321-groupProject2/api/api.csproj",
+  "projectFilePath": "/Users/reghanhandley/Desktop/TEAProject/api/api.csproj",
   "expectedPackageFiles": [
     "/Users/reghanhandley/.nuget/packages/google.protobuf/3.21.9/google.protobuf.3.21.9.nupkg.sha512",
     "/Users/reghanhandley/.nuget/packages/k4os.compression.lz4/1.2.6/k4os.compression.lz4.1.2.6.nupkg.sha512",

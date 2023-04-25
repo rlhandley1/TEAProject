@@ -191,7 +191,7 @@ async function populateTable(selectedOption) {
       //DETAILS MODAL
       const detailsCell = document.createElement("td");
       const detailsButton = document.createElement("button");
-      detailsButton.classList.add("btn-outline-primary");
+      // detailsButton.classList.add("btn-outline-primary");
       detailsButton.innerText = "View Details";
       detailsButton.addEventListener("click", () => {
         const dmodal = document.getElementById("detailsModal");
@@ -239,7 +239,7 @@ async function populateTable(selectedOption) {
       //AVAILABILITY MODAL
       const availabilityCell = document.createElement("td");
       const availabilityButton = document.createElement("button");
-      availabilityButton.classList.add("btn-outline-primary");
+      // availabilityButton.classList.add("btn-outline-primary");
       availabilityButton.innerText = "Check Availability";
 
       availabilityButton.addEventListener("click", () => {
@@ -390,7 +390,8 @@ async function populateAdmin() {
   for (let i = 0; i < carsData.length; i++) {
     if (!carsData[i].isDeleted) {
       const row = document.createElement("tr");
-      row.style.width = "95%";
+      row.style.width = "90%";
+      
 
       const name = document.createElement("input");
       name.value = carsData[i].carName;
@@ -479,7 +480,7 @@ async function populateAdmin() {
       const saveCell = document.createElement("td");
       const saveButton = document.createElement("button");
       saveButton.classList.add("btn-outline-primary");
-      saveButton.style.marginRight = "12px";
+      saveButton.style.marginRight = "15px";
       saveButton.innerText = "Save";
       saveButton.addEventListener("click", () => {
         const updatedCar = {
@@ -505,7 +506,7 @@ async function populateAdmin() {
 
       const deleteButton = document.createElement("button");
       deleteButton.classList.add("btn-outline-danger");
-      deleteButton.style.marginRight = "5px";
+      deleteButton.style.marginRight = "8px";
       deleteButton.innerText = "Delete";
       deleteButton.addEventListener("click", () => {
         deleteCar(carsData[i].carVIN).then(() => {
