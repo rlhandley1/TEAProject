@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./resources/styles/index.css" />
+    <title>Home Page</title>
+  </head>
+
+  <body onload="handleOnLoad()">
+    <nav>
+      <div class="logo">
+        <a href="#">TEA</a>
+      </div>
+      <div class="menu">
+        <a class="active" href="index.html">Home</a>
+        <a style="color: darkgrey" href="aboutus.html">About Us</a>
+      </div>
+      <div class="admin">
+        <a style="color: darkgrey" href="password.html">Admin</a>
+      </div>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </nav>
+
+    <!-- SORT DROPDOWN -->
+    <!-- <div class="sort-by-dropdown"> -->
+          
+    <div class="dropdown">
+              <select id="sortSelect" class="form-select">
+                  
+        <option value="" disabled selected>Sort By Price</option>
+                  
+        <option value="high">Highest to Lowest</option>
+                  
+        <option value="low">Lowest to Highest</option>
+                
+      </select>
+            
+    </div>
+    <!-- </div> -->
+
+    <!-- <div id="car" class="row"> -->
+    <!-- CAR TABLE -->
+    <!-- </div> -->
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="carTableBody"></tbody>
+    </table>
+
+    <div
+      class="modal fade"
+      id="detailsModal"
+      tabindex="-1"
+      aria-labelledby="carModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <center>
+              <h5 class="modal-title" id="carModalLabel">Car Details</h5>
+            </center>
+            <button
+              type="button"
+              class="btn-close"
+              id="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-5 pt-0">
+            <div class="row">
+              <div id="features">
+                <h1 class="name">
+                  <strong>
+                    <span id="carName"></span>
+                  </strong>
+                </h1>
+                <p>
+                  <strong>$<span id="carPrice"></span></strong>
+                </p>
+                <p>Miles per Gallon: <span id="Mpg"></span></p>
+                <p>Travel Range: <span id="range"></span></p>
+                <p>Horsepower: <span id="horsePower"></span></p>
+                <p>Drive: <span id="drive"></span></p>
+                <p>Transmission: <span id="transmission"></span></p>
+                <p>Color: <span id="color"></span></p>
+                <p>Seats up to: <span id="seat"></span></p>
+                <hr />
+                <div class="compare">
+                  <center>
+                    <h4>Compare to Generic Gas Car</h4>
+                    <form id="compareForm">
+                      <div class="form-group">
+                        <label for="avgMiles"
+                          >Average Miles Driven Per Year:</label
+                        >
+                        <p style="color: gray">13,500 Miles</p>
+                      </div>
+                      <div class="form-group">
+                        <label for="gasPrice"
+                          >Average Gas Price in Your Area:</label
+                        >
+                        <p style="color: gray">$3.150</p>
+                      </div>
+                      <div class="form-group">
+                        <label for="yearsDriven"
+                          >Years Intended to Drive:</label
+                        >
+                        <p style="color: gray">12 Years</p>
+                      </div>
+                      <div class="form-group">
+                        <label for="electricCost"
+                          >Average Cost of Electric:</label
+                        >
+                        <p style="color: gray">1,214 kWh = $154.30</p>
+                      </div>
+                      <button
+                        id="compareButton"
+                        type="submit"
+                        class="btn btn-primary"
+                        onclick="movePage()"
+                      >
+                        Compare
+                      </button>
+                    </form>
+                  </center>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+
+    <!-- AVAILABILITY MODAL -->
+    <div
+      class="modal fade"
+      id="availModal"
+      tabindex="-1"
+      aria-labelledby="availModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <center>
+              <h5 class="modal-title" id="availModalLabel">Car Availability</h5>
+            </center>
+            <button
+              type="button"
+              class="btn-close"
+              id="btn-clos"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-5 pt-0">
+            <br />
+            <form id="carRequest">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control rounded-3"
+                  id="firstName"
+                  placeholder="First Name"
+                />
+                <label for="firstName">First Name</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control rounded-3"
+                  id="lastName"
+                  placeholder="Last Name"
+                />
+                <label for="lastName">Last Name</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control rounded-3"
+                  id="email"
+                  placeholder="name@email.com"
+                />
+                <label for="email">Email</label>
+              </div>
+              <button
+                class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
+                type="button"
+                id="availSubmit"
+              >
+                Submit
+              </button>
+              <center>
+                <small class="text-muted"
+                  >Check inbox to view availability on this vehicle</small
+                >
+              </center>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-backdrop avail-backdrop"></div>
+
+    <script>
+      function movePage() {
+        window.location.href = "calculator.html";
+      }
+    </script>
+
+    <script src="./resources/scripts/index.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
