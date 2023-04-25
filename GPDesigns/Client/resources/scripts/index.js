@@ -6,7 +6,6 @@ const tableBody = document.getElementById("carTableBody");
 const adminTableBody = document.getElementById("AdminTableBody");
 let cars = [];
 let requests = [];
-// let sortOption = "high";
 let gasCar = [
   {
     // SEDAN
@@ -67,19 +66,17 @@ let gasCar = [
 ];
 
 //LISTENS FOR A CHANGE ON THE SORT
-
 if (sortSelect) {
   sortSelect.addEventListener("change", () => {
     const selectedOption = sortSelect.value;
     populateTable(selectedOption);
   });
 }
-
+//INDEX ON LOAD
 function handleOnLoad() {
   const selectedOption = sortSelect.value;
   populateTable(selectedOption);
 }
-
 //GETS CARS FROM DATABASE
 async function getCars(selectedOption) {
   try {
@@ -87,7 +84,7 @@ async function getCars(selectedOption) {
     const response = await fetch(url);
     const data = await response.json();
 
-    // Sort the cars based on the selected option
+    // SORTR CARS BY PRICE
     if (selectedOption === "high") {
       data.sort((a, b) => b.carPrice - a.carPrice);
     } else if (selectedOption === "low") {
@@ -119,7 +116,6 @@ async function getCars(selectedOption) {
 
   return cars;
 }
-
 //GETS SPECIFIC CAR FOR EDIT/DELETE
 async function getCarById(vinID) {
   const response = await fetch(`${url}/${vinID}`);
@@ -141,7 +137,6 @@ async function getCarById(vinID) {
     isDeleted: carData.isDeleted,
   };
 }
-
 //POPULATE HOME PAGE
 async function populateTable(selectedOption) {
   tableBody.innerHTML = " ";
@@ -160,9 +155,6 @@ async function populateTable(selectedOption) {
       img.style.height = "200px";
       imgCell.appendChild(img);
       row.appendChild(imgCell);
-
-      // const carImage = document.getElementById("img");
-      // carImage.src = img.src;
 
       //NAME ROW
       const nameCell = document.createElement("td");
@@ -191,8 +183,8 @@ async function populateTable(selectedOption) {
       //DETAILS MODAL
       const detailsCell = document.createElement("td");
       const detailsButton = document.createElement("button");
-      // detailsButton.classList.add("btn-outline-primary");
       detailsButton.innerText = "View Details";
+
       detailsButton.addEventListener("click", () => {
         const dmodal = document.getElementById("detailsModal");
 
@@ -218,9 +210,8 @@ async function populateTable(selectedOption) {
         dmodal.classList.add("show");
         dmodal.style.display = "block";
 
-        //PLACE COMPARE EVENT LISTENER HERE WHEN READY
+        //COMPARE EVENT LISTENER
         const compareButton = document.getElementById("compareButton");
-
         compareButton.addEventListener("click", function (event) {
           event.preventDefault();
           let id = carsData[i].carVIN;
@@ -239,7 +230,6 @@ async function populateTable(selectedOption) {
       //AVAILABILITY MODAL
       const availabilityCell = document.createElement("td");
       const availabilityButton = document.createElement("button");
-      // availabilityButton.classList.add("btn-outline-primary");
       availabilityButton.innerText = "Check Availability";
 
       availabilityButton.addEventListener("click", () => {
@@ -297,7 +287,7 @@ async function populateTable(selectedOption) {
     }
   }
 }
-
+//CLOSES MODALS
 function closeButton(modalID, bID) {
   const closeButton = modalID.querySelector(bID);
   console.log(bID);
@@ -313,10 +303,8 @@ function closeButton(modalID, bID) {
     modalID.style.display = "none";
   }
 }
-
 //ADD CAR IN ADMIN
 async function addNewCar(event) {
-  // form.addEventListener("submit", async function (e) {
   event.preventDefault();
   let fourWDRadio = document.getElementById("drive");
   let drive = "2wd";
@@ -350,14 +338,12 @@ async function addNewCar(event) {
     isDeleted: false,
   };
   cars.unshift(newCar);
-  // console.log(newCar);
   await addCar(newCar).then(
     setTimeout(() => {
       location.reload();
     }, 5000)
   );
 }
-
 //ADD CAR TO DATABASE
 async function addCar(newCar) {
   newCar.carVIN = -1;
@@ -391,7 +377,6 @@ async function populateAdmin() {
     if (!carsData[i].isDeleted) {
       const row = document.createElement("tr");
       row.style.width = "90%";
-      
 
       const name = document.createElement("input");
       name.value = carsData[i].carName;
@@ -523,7 +508,6 @@ async function populateAdmin() {
   }
   form.addEventListener("submit", addNewCar);
 }
-
 //EDIT CAR
 async function editCar(updatedCar, id) {
   let car = 0;
@@ -566,7 +550,7 @@ async function deleteCar(id) {
     body: JSON.stringify(car),
   });
 }
-
+//POPULATE COMPARE TABLE
 async function populateCalculator(carVIN) {
   let gasCarForElectricCar;
   let electricCar = 0;
