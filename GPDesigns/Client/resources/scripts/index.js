@@ -6,7 +6,6 @@ const form = document.getElementById("new-car");
 const tableBody = document.getElementById("carTableBody");
 const adminTableBody = document.getElementById("AdminTableBody");
 
-
 // let chosenCar = JSON.parse(localStorage.getItem("chosenCar"));
 
 let cars = [];
@@ -196,11 +195,14 @@ async function populateTable(selectedOption) {
 
       detailsButton.addEventListener("click", () => {
         localStorage.setItem("chosenCar", JSON.stringify(carsData[i]));
+        
 
         const dmodal = document.getElementById("detailsModal");
 
         const nameVal = document.getElementById("carName");
         nameVal.textContent = carsData[i].carName;
+        const typeVal = document.getElementById("carType");
+        typeVal.textContent = carsData[i].carType
         const priceVal = document.getElementById("carPrice");
         priceVal.textContent = carsData[i].carPrice;
         const mpgVal = document.getElementById("Mpg");
@@ -226,10 +228,9 @@ async function populateTable(selectedOption) {
         compareButton.addEventListener("click", function (event) {
           // debugger
           event.preventDefault();
-          
+
           // debugger
           movePage();
-          // debugger
           dmodal.style.display = "none";
           dmodal.classList.remove("show");
         });
@@ -376,6 +377,11 @@ async function addCar(newCar) {
 //REDIRECT TO CALCULATOR
 function movePage() {
   window.location.href = "calculator.html";
+  // Retrieve the chosen car from local storage
+  const chosenCar = JSON.parse(localStorage.getItem("chosenCar"));
+
+  // Call the populateCalculator function to populate the table
+  populateCalculator(chosenCar);
 }
 //POPULATES THE ADMIN TABLE
 async function populateAdmin() {
@@ -564,21 +570,20 @@ async function deleteCar(id) {
   });
 }
 //POPULATE COMPARE TABLE
-async function populateCalculator() {
-  chosenCar = JSON.parse(localStorage.getItem('chosenCar'));
+async function populateCalculator(chosenCar) {
+  // const chosenCar = JSON.parse(localStorage.getItem("chosenCar"));
 
   // Find the matching gasCarForElectricCar using the electricCar.carType
   let gasCarForElectricCar;
-  if (chosenCar.carType === "SUV") {
+  if (chosenCar.carType.toLowerCase() === "suv") {
     gasCarForElectricCar = gasCar.find((car) => car.id === 3); // SUV gas car
-  } else if (chosenCar.carType === "Crossover") {
+  } else if (chosenCar.carType.toLowerCase() === "crossover") {
     gasCarForElectricCar = gasCar.find((car) => car.id === 4); // Crossover gas car
-  } else if (chosenCar.carType === "Truck") {
+  } else if (chosenCar.carType.toLowerCase() === "truck") {
     gasCarForElectricCar = gasCar.find((car) => car.id === 2); // Truck gas car
-  } else if (chosenCar.carType === "Sedan") {
+  } else if (chosenCar.carType.toLowerCase() === "sedan") {
     gasCarForElectricCar = gasCar.find((car) => car.id === 1); // Sedan gas car
   }
-
 
   // Populate the table with the data from gasCarForElectricCar
   document.getElementById("eimg").src = chosenCar.carImage;
@@ -586,14 +591,21 @@ async function populateCalculator() {
   document.getElementById("gasName").innerText = gasCarForElectricCar.carName;
   document.getElementById("oneYearGas").innerText = gasCarForElectricCar.gasOne;
   document.getElementById("electricName").innerText = chosenCar.carName;
-  document.getElementById("oneYearElectric").innerText = gasCarForElectricCar.eOne;
-  document.getElementById("oneYearSavings").innerText = gasCarForElectricCar.savingOne;
+  document.getElementById("oneYearElectric").innerText =
+    gasCarForElectricCar.eOne;
+  document.getElementById("oneYearSavings").innerText =
+    gasCarForElectricCar.savingOne;
 
-  document.getElementById("threeYearGas").innerText = gasCarForElectricCar.gasThree;
-  document.getElementById("threeYearElectric").innerText = gasCarForElectricCar.eThree;
-  document.getElementById("threeYearSavings").innerText = gasCarForElectricCar.savingThree;
+  document.getElementById("threeYearGas").innerText =
+    gasCarForElectricCar.gasThree;
+  document.getElementById("threeYearElectric").innerText =
+    gasCarForElectricCar.eThree;
+  document.getElementById("threeYearSavings").innerText =
+    gasCarForElectricCar.savingThree;
 
   document.getElementById("tenYearGas").innerText = gasCarForElectricCar.gasTen;
-  document.getElementById("tenYearElectric").innerText = gasCarForElectricCar.eTen;
-  document.getElementById("tenYearSavings").innerText = gasCarForElectricCar.savingTen;
+  document.getElementById("tenYearElectric").innerText =
+    gasCarForElectricCar.eTen;
+  document.getElementById("tenYearSavings").innerText =
+    gasCarForElectricCar.savingTen;
 }

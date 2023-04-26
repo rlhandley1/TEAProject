@@ -70,13 +70,13 @@
             />
           </div>
           <div class="col-md-2 form-group">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Car type"
-              id="car-type"
-              required
-            />
+            <select class="form-control" id="car-type" required>
+              <option value="" disabled selected>Car Type</option>
+              <option value="suv">SUV</option>
+              <option value="sedan">Sedan</option>
+              <option value="truck">Truck</option>
+              <option value="crossover">Crossover</option>
+            </select>
           </div>
           <div class="col-md-2 form-group">
             <input
@@ -184,26 +184,26 @@
       </form>
     </div>
     <!-- <div id="Acar" class="row"> -->
-      <table>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>MPG</th>
-            <th>Range</th>
-            <th>Horsepower</th>
-            <th>Drive</th>
-            <th>Transmission</th>
-            <th>Color</th>
-            <th>Seat</th>
-            <th>Save</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody id="AdminTableBody"></tbody>
-      </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>MPG</th>
+          <th>Range</th>
+          <th>Horsepower</th>
+          <th>Drive</th>
+          <th>Transmission</th>
+          <th>Color</th>
+          <th>Seat</th>
+          <th>Save</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="AdminTableBody"></tbody>
+    </table>
     <!-- </div> -->
 
     <style>
