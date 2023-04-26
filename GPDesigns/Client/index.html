@@ -104,42 +104,15 @@
                 <p>Seats up to: <span id="seat"></span></p>
                 <hr />
                 <div class="compare">
-                  <center>
-                    <h4>Compare to Generic Gas Car</h4>
-                    <form id="compareForm">
-                      <div class="form-group">
-                        <label for="avgMiles"
-                          >Average Miles Driven Per Year:</label
-                        >
-                        <p style="color: gray">13,500 Miles</p>
-                      </div>
-                      <div class="form-group">
-                        <label for="gasPrice"
-                          >Average Gas Price in Your Area:</label
-                        >
-                        <p style="color: gray">$3.150</p>
-                      </div>
-                      <div class="form-group">
-                        <label for="yearsDriven"
-                          >Years Intended to Drive:</label
-                        >
-                        <p style="color: gray">12 Years</p>
-                      </div>
-                      <div class="form-group">
-                        <label for="electricCost"
-                          >Average Cost of Electric:</label
-                        >
-                        <p style="color: gray">1,214 kWh = $154.30</p>
-                      </div>
+                   <center>
                       <button
                         id="compareButton"
                         type="submit"
                         class="btn btn-primary"
-                        onclick="movePage()"
                       >
                         Compare
                       </button>
-                    </form>
+                    <!-- </form> -->
                   </center>
                 </div>
               </div>
@@ -222,11 +195,7 @@
     </div>
     <div class="modal-backdrop avail-backdrop"></div>
 
-    <script>
-      function movePage() {
-        window.location.href = "calculator.html";
-      }
-    </script>
+    
 
     <script src="./resources/scripts/index.js"></script>
     <script

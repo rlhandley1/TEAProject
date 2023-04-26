@@ -1,9 +1,14 @@
 let url = "https://localhost:7012/api/Car"; //fill this link with ours
 let requestUrl = "https://localhost:7012/api/carRequest";
+console.log("HERE");
 const sortSelect = document.getElementById("sortSelect");
 const form = document.getElementById("new-car");
 const tableBody = document.getElementById("carTableBody");
 const adminTableBody = document.getElementById("AdminTableBody");
+
+
+// let chosenCar = JSON.parse(localStorage.getItem("chosenCar"));
+
 let cars = [];
 let requests = [];
 let gasCar = [
@@ -12,56 +17,60 @@ let gasCar = [
     id: 1,
     img: "https://content.homenetiol.com/2000292/2192701/0x0/stock_images/8/cc_2023HYC02_01_640/cc_2023HYC020029_01_640_S3B.jpg",
     carName: "2023 Hyundai Elantra",
-    carPrice: 24400,
-    range: 409.2,
-    horsePower: 147,
-    drive: "2wd",
-    transmission: "automatic",
-    color: "black",
-    Mpg: 33,
-    seat: 5,
+    gasOne: "$1,920",
+    eOne: "$672",
+    savingOne: "$1,248",
+    gasThree: "$5,760",
+    eThree: "$2,016",
+    savingThree: "$3,744",
+    gasTen: "$19,200",
+    eTen: "$6,720",
+    savingTen: "$12,480",
   },
   {
     // TRUCK
     id: 2,
     img: "https://2020pickuptrucks.com/wp-content/uploads/2021/10/2022-Ford-F-150-Diesel.jpeg",
     carName: "2022 FORD F-150 XL",
-    carPrice: 38998,
-    range: 494.0,
-    horsePower: 325,
-    drive: "4wd",
-    transmission: "automatic",
-    color: "Green",
-    Mpg: 20,
-    seat: 5,
+    gasOne: "$2,292",
+    eOne: "$820",
+    savingOne: "$1,472",
+    gasThree: "$6,876",
+    eThree: "$2,460",
+    savingThree: "$4,416",
+    gasTen: "$22,920",
+    eTen: "$8,200",
+    savingTen: "$14,720",
   },
   {
     // SUV
     id: 3,
     img: "https://inv.assets.sincrod.com/GM_VIVP/deg01/2023/1NT26/1NT26__0HD/GLY_060_0HD_0ST_1NF_2NF_2ST_3ST_4HT_4ST_5FC_5ST_6X1_7X1_8X2_9X2_A2X_AAB_ABD_AG2_AKO_AL0_AL9_AR9_ASV_AT8_ATH_AXP_AYG_BTV_C59_CAV_CJ2_CTT_CWA_DCP_DM8_DP6_DRZ_EB1_EF7_ENL_EPM_F_F48_FE2_FHO_FXC_HAX_HS1_IOT_J23_J61_K1O_K4C_KA1_KA6_KI3_KI6_KL9_KRV_KSG_KU9_KW7_LGX_M3V_MAH_MCR_MCZ_N38_N57_NC7_NE1_NE8_NUC_PDF_PDG_PPW_PRF_PZ8_QNU_R7X_R9N_RIA_RSR_RTI_SAL_SLM_SUU_T4L_T7E_T7Z_TC2_TDM_TQ5_TSQ_U05_U2K_U80_UD7_UE1_UE4_UEU_UFG_UG1_UGN_UHS_UHX_UKC_UKJ_UQA_URC_USS_UV2_V08_V33_V64_V8D_V92_VHM_VK3_VRG_VRH_VRK_VRL_VRM_VRN_VRR_VRS_VT7_VTI_VV4_VY7_W2D_WMX_WPP_XL8_YM8_ZCD_ZL8_0HDgmds10.jpg",
     carName: "2023 Chevrolet Blazer",
-    carPrice: 36495,
-    range: 320,
-    horsePower: 308,
-    drive: "4wd",
-    transmission: "automatic",
-    color: "Brown",
-    Mpg: 20,
-    seat: 5,
+    gasOne: "$2,400",
+    eOne: "$892",
+    savingOne: "$1,508",
+    gasThree: "$7,200",
+    eThree: "$2,673",
+    savingThree: "$4,527",
+    gasTen: "$24,000",
+    eTen: "$8,920",
+    savingTen: "$15,080",
   },
   {
     // CROSSOVER
     id: 4,
     img: "https://hips.hearstapps.com/hmg-prod/images/2022-cx-30-2-5-s-carbon-edition-01-1641309026.jpg?crop=0.827xw:0.735xh;0.125xw,0.211xh&resize=1200:*",
     carName: "2022 Mazda cx-3",
-    carPrice: 21790,
-    range: 368.3,
-    horsePower: 148,
-    drive: "2wd",
-    transmission: "automatic",
-    color: "Grey",
-    Mpg: 29,
-    seat: 5,
+    gasOne: "$1,392",
+    eOne: "$672",
+    savingOne: "$720",
+    gasThree: "$13,920",
+    eThree: "$6,720",
+    savingThree: "$7,200",
+    gasTen: "$13,920",
+    eTen: "$6,720",
+    savingTen: "$7,200",
   },
 ];
 
@@ -186,6 +195,8 @@ async function populateTable(selectedOption) {
       detailsButton.innerText = "View Details";
 
       detailsButton.addEventListener("click", () => {
+        localStorage.setItem("chosenCar", JSON.stringify(carsData[i]));
+
         const dmodal = document.getElementById("detailsModal");
 
         const nameVal = document.getElementById("carName");
@@ -213,10 +224,12 @@ async function populateTable(selectedOption) {
         //COMPARE EVENT LISTENER
         const compareButton = document.getElementById("compareButton");
         compareButton.addEventListener("click", function (event) {
+          // debugger
           event.preventDefault();
-          let id = carsData[i].carVIN;
-          populateCalculator(id);
+          
+          // debugger
           movePage();
+          // debugger
           dmodal.style.display = "none";
           dmodal.classList.remove("show");
         });
@@ -551,45 +564,36 @@ async function deleteCar(id) {
   });
 }
 //POPULATE COMPARE TABLE
-async function populateCalculator(carVIN) {
+async function populateCalculator() {
+  chosenCar = JSON.parse(localStorage.getItem('chosenCar'));
+
+  // Find the matching gasCarForElectricCar using the electricCar.carType
   let gasCarForElectricCar;
-  let electricCar = 0;
-  for (var i = 0; i < cars.length; i++) {
-    if (cars[i].carVIN == carVIN) {
-      electricCar = {
-        ...cars[i],
-      };
-    }
+  if (chosenCar.carType === "SUV") {
+    gasCarForElectricCar = gasCar.find((car) => car.id === 3); // SUV gas car
+  } else if (chosenCar.carType === "Crossover") {
+    gasCarForElectricCar = gasCar.find((car) => car.id === 4); // Crossover gas car
+  } else if (chosenCar.carType === "Truck") {
+    gasCarForElectricCar = gasCar.find((car) => car.id === 2); // Truck gas car
+  } else if (chosenCar.carType === "Sedan") {
+    gasCarForElectricCar = gasCar.find((car) => car.id === 1); // Sedan gas car
   }
 
-  if (electricCar.carType === "SUV") {
-    gasCarForElectricCar = gasCar.find((car) => gasCar.id === 3); // SUV gas car
-  } else if (electricCar.carType === "Crossover") {
-    gasCarForElectricCar = gasCar.find((car) => gasCar.id === 4); // Crossover gas car
-  } else if (electricCar.carType === "Truck") {
-    gasCarForElectricCar = gasCar.find((car) => gasCar.id === 2); // Truck gas car
-  } else if (electricCar.carType === "Sedan") {
-    gasCarForElectricCar = gasCar.find((car) => gasCar.id === 1); // Sedan gas car
-  }
 
-  let gasTable = document.getElementById("gasTable");
-  gasTable.innerHTML = "";
+  // Populate the table with the data from gasCarForElectricCar
+  document.getElementById("eimg").src = chosenCar.carImage;
+  document.getElementById("gimg").src = gasCarForElectricCar.img;
+  document.getElementById("gasName").innerText = gasCarForElectricCar.carName;
+  document.getElementById("oneYearGas").innerText = gasCarForElectricCar.gasOne;
+  document.getElementById("electricName").innerText = chosenCar.carName;
+  document.getElementById("oneYearElectric").innerText = gasCarForElectricCar.eOne;
+  document.getElementById("oneYearSavings").innerText = gasCarForElectricCar.savingOne;
 
-  // const row = document.createElement("tr");
-  // const imgCell = document.createElement("td");
-  // const gImg = document.createElement("img");
-  // gImg.src = gasCar[i].img;
-  // gImg.style.width = "420px";
-  // gImg.style.height = "250px";
-  // imgCell.appendChild(gImg);
-  // row.appendChild(imgCell);
+  document.getElementById("threeYearGas").innerText = gasCarForElectricCar.gasThree;
+  document.getElementById("threeYearElectric").innerText = gasCarForElectricCar.eThree;
+  document.getElementById("threeYearSavings").innerText = gasCarForElectricCar.savingThree;
 
-  // const nameCell = document.createElement("td");
-  // const name = document.createElement("h1");
-  // name.textContent = gasCar[i].carName;
-  // name.style.fontWeight = "bold";
-  // nameCell.appendChild(name);
-  // row.appendChild(nameCell);
-
-  // gasTable.appendChild(row)
+  document.getElementById("tenYearGas").innerText = gasCarForElectricCar.gasTen;
+  document.getElementById("tenYearElectric").innerText = gasCarForElectricCar.eTen;
+  document.getElementById("tenYearSavings").innerText = gasCarForElectricCar.savingTen;
 }
