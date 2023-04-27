@@ -72,7 +72,6 @@ let gasCar = [
     savingTen: "$7,200",
   },
 ];
-
 //LISTENS FOR A CHANGE ON THE SORT
 if (sortSelect) {
   sortSelect.addEventListener("change", () => {
@@ -245,27 +244,31 @@ async function populateTable(selectedOption) {
       const availabilityCell = document.createElement("td");
       const availabilityButton = document.createElement("button");
       availabilityButton.innerText = "Check Availability";
+      availabilityButton.setAttribute("id", carsData[i].carVIN)
 
-      availabilityButton.addEventListener("click", () => {
+      availabilityButton.addEventListener("click", (event) => {
+        console.log(event.target.id)
+        const id = event.target.id;
         const amodal = document.getElementById("availModal");
         amodal.classList.add("show");
         amodal.style.display = "block";
 
         const submitRequest = document.getElementById("availSubmit");
-
+        console.log(carsData)
         submitRequest.addEventListener("click", async function (e) {
           e.preventDefault();
           const fNameInput = document.getElementById("firstName");
           const lNameInput = document.getElementById("lastName");
           const emailInput = document.getElementById("email");
+          console.log(carsData[i])
 
-          const id = carsData[i].vinID;
+          // const id = carsData[i].vinID;
 
           const availBody = {
-            vinId: id,
-            firstName: fNameInput,
-            lastName: lNameInput,
-            email: emailInput,
+            car: id,
+            fName: document.getElementById("firstName").value,
+            lName: document.getElementById("lastName").value,
+            email: document.getElementById("email").value,
           };
 
           fetch(requestUrl, {
@@ -275,12 +278,7 @@ async function populateTable(selectedOption) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(availBody),
-          })
-            .then((response) => {
-              console.log(response);
-              return response;
-            })
-            .catch((error) => {
+          }).catch((error) => {
               console.log(error);
             });
 

@@ -33,10 +33,12 @@ namespace api.Controllers
         }
 
         // POST: api/CarRequest
-        [HttpPost] //CREATE
+        [HttpPost(Name = "CarRequest2")] //CREATE
         public void Post([FromBody] Requests request)
         {
-        CreateCarRequest newRequest = new CreateCarRequest();
+            System.Console.WriteLine("HERE");
+            System.Console.WriteLine(request.car);
+            CreateCarRequest newRequest = new CreateCarRequest();
             newRequest.CreateOne(request);
         }
 
