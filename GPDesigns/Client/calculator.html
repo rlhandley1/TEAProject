@@ -28,19 +28,19 @@
   </nav>
 
   <div class="container" style="margin-top: 0px;">
-    <h2 class="text-center mt-3">The following is based off the national average for gas and electric fuel prices.</h2>
+    <h4 class="text-center mt-3">The following is based off the national average for gas and electric fuel prices.</h4>
     <table class="mt-5" >
       <tbody id="calcBody">
         <tr>
-          <td class="text-center"><h2><span id="electricName"></span></h2></td>
-          <td class="text-center"><h2><span id="gasName"></span></h2></td>
+          <td class="text-center"><h3><strong>2022 Ford F-150 Lightning</strong></h3></td>
+          <td class="text-center"><h3><strong>2022 FORD F-150 XL</strong></h3></td>
         </tr>
         <tr>
           <td style="text-align: center;">
-            <img id="eimg" width="400" height="200">
+            <img src="https://di-uploads-pod4.dealerinspire.com/mikemurphyford/uploads/2021/06/2022Ford%C2%AEF-150LightningElectricTruckAllElectricandAllF-1502021-06-17at4.27.58PM.jpg">
         </td>
         <td style="text-align: center;">
-          <img id="gimg" width="400" height="200">
+          <img src="https://2020pickuptrucks.com/wp-content/uploads/2021/10/2022-Ford-F-150-Diesel.jpeg">
       </td>
         </tr>
         <tr>
@@ -48,36 +48,47 @@
           <td></td>
         </tr>
         <tr>
-          <td style="color:dimgrey;">Electric: <span id="oneYearElectric"></span></td>
-          <td style="color:dimgrey;">Gas: <span id="oneYearGas"></span></td>
+          <td style="color:dimgrey;">Electric: $820 <span id="oneYearElectric"></span></td>
+          <td style="color:dimgrey;">Gas: $2,292 <span id="oneYearGas"></span></td>
         </tr>
-          <td>Savings: <span id="oneYearSavings"></span></td>
+          <td>Savings: $1,472 <span id="oneYearSavings"></span></td>
           <td></td>
           <tr>
             <td><strong>Cost of Ownership after 3 years</strong></td>
             <td></td>
           </tr>
         <tr>
-          <td style="color:dimgrey;">Electric: <span id="threeYearElectric"></span></td>
-          <td style="color:dimgrey;">Gas: <span id="threeYearGas"></span></td>
+          <td style="color:dimgrey;">Electric: $1,472 <span id="threeYearElectric"></span></td>
+          <td style="color:dimgrey;">Gas: $6,876 <span id="threeYearGas"></span></td>
         </tr>
-        <td>Savings: <span id="threeYearSavings"></span></td>
+        <td>Savings: $4,416 <span id="threeYearSavings"></span></td>
           <td></td>
           <tr>
             <td><strong>Cost of Ownership after 10 years</strong></td>
             <td></td>
           </tr>
         <tr>
-          <td style="color:dimgrey;">Electric: <span id="tenYearElectric"></span></td>
-          <td style="color:dimgrey;">Gas: <span id="tenYearGas"></span></td>
+          <td style="color:dimgrey;">Electric: $8,200  <span id="tenYearElectric"></span></td>
+          <td style="color:dimgrey;">Gas: $22,920 <span id="tenYearGas"></span></td>
         </tr>
         <tr>
-        <td>Savings: <span id="tenYearSavings"></span></td>
+        <td>Savings: $14,720 <span id="tenYearSavings"></span></td>
           <td></td>
         </tr>
-
       </tbody>
     </table>
+  </div>
+  <div>
+      <center><h4>Tax Benefits of Owning Electric Vehicles:</h4></center>
+      <ul>
+        <li>All electric and plug-in hybrid vehicles bought new in or after 2010 may be eligible for a $7,500 federal income tax credit.</li>
+        <li>The amount of the credit will vary depending on the capacity of the battery used to power the car. State and municipal tax breaks may also be available.</li>
+        <li>If you purchased a Nissan Leaf and your tax bill was $5,000, that’s all you get at the end of the year. You’re not going to get the other $2,500 as part of a refund. Furthermore, if part of the credit is unused, you can’t carry it over to the following year.</li>
+        <li>This credit only applies to purchases of a vehicle. If you happen to lease the vehicle, the manufacturer gets to take advantage of the tax credit instead.</li>
+        <li>Some manufacturers will lower your monthly payment to take the credit into account, but they’re not obligated to do this.</li>
+        <li>The size of the battery in the car is one of the most essential criteria in determining how beneficial it is to claim the electric car credit. For example, the Toyota Prius Prime has a smaller battery, and it’s a hybrid, so you can only get a maximum of $4,502 from purchasing this vehicle.</li>
+        <li>There’s no set date for when electric vehicle tax credits are due to expire. It depends on the manufacturer.</li>
+      </ul>
   </div>
 
   <style>
@@ -89,6 +100,7 @@
       text-align: left;
     }
     th, td {
+      border-top: none;
       padding: 8px;
       border-bottom: 1px solid #ddd;
     }
@@ -99,6 +111,11 @@
     tr:nth-child(even) {
       background-color: #f2f2f2;
     }
+    img {
+  width: 60%;
+  max-width: 600px;
+}
+
   </style>
 
 </body>

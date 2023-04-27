@@ -1,6 +1,5 @@
 let url = "https://localhost:7012/api/Car"; //fill this link with ours
 let requestUrl = "https://localhost:7012/api/carRequest";
-console.log("HERE");
 const sortSelect = document.getElementById("sortSelect");
 const form = document.getElementById("new-car");
 const tableBody = document.getElementById("carTableBody");
@@ -194,7 +193,8 @@ async function populateTable(selectedOption) {
 
       detailsButton.addEventListener("click", () => {
         localStorage.setItem("chosenCar", JSON.stringify(carsData[i]));
-        
+        const Test = JSON.parse(localStorage.getItem("chosenCar"))
+        console.log(Test)
 
         const dmodal = document.getElementById("detailsModal");
 
@@ -359,7 +359,6 @@ async function addNewCar(event) {
 //ADD CAR TO DATABASE
 async function addCar(newCar) {
   newCar.carVIN = -1;
-  debugger;
   fetch(url, {
     method: "POST",
     headers: {
@@ -368,18 +367,19 @@ async function addCar(newCar) {
     },
     body: JSON.stringify(newCar),
   }).catch((error) => {
-    debugger;
     console.log(error);
   });
 }
 //REDIRECT TO CALCULATOR
 function movePage() {
-  window.location.href = "calculator.html";
+
   // Retrieve the chosen car from local storage
   const chosenCar = JSON.parse(localStorage.getItem("chosenCar"));
 
   // Call the populateCalculator function to populate the table
   populateCalculator(chosenCar);
+
+  window.location.href = "calculator.html";
 }
 //POPULATES THE ADMIN TABLE
 async function populateAdmin() {
@@ -567,43 +567,68 @@ async function deleteCar(id) {
     body: JSON.stringify(car),
   });
 }
-//POPULATE COMPARE TABLE
+//POPULATE COMPARE TABLE 
 async function populateCalculator(chosenCar) {
-  // const chosenCar = JSON.parse(localStorage.getItem("chosenCar"));
+const eCar = await getCarById(chosenCar);
 
-  // Find the matching gasCarForElectricCar using the electricCar.carType
-  let gasCarForElectricCar;
-  if (chosenCar.carType.toLowerCase() === "suv") {
-    gasCarForElectricCar = gasCar.find((car) => car.id === 3); // SUV gas car
-  } else if (chosenCar.carType.toLowerCase() === "crossover") {
-    gasCarForElectricCar = gasCar.find((car) => car.id === 4); // Crossover gas car
-  } else if (chosenCar.carType.toLowerCase() === "truck") {
-    gasCarForElectricCar = gasCar.find((car) => car.id === 2); // Truck gas car
-  } else if (chosenCar.carType.toLowerCase() === "sedan") {
-    gasCarForElectricCar = gasCar.find((car) => car.id === 1); // Sedan gas car
+  
+  if(eCar.carType === "SUV"){ 
+    gasCar = gasCar[2];
+    console.log(eCar + "here")
+    // Populate the table with the data from gasCarForElectricCar
+    document.getElementById('eimg').src = eCar.carImg;
+    document.getElementById('gimg').src = gasCar.img;
+    document.getElementById('eletricName').innerText = eCar.carName;
+    document.getElementById('gasName').innerText = gasCar.carName;
+    document.getElementById('oneYearGas').innerText = gasCar.gasOne;
+    document.getElementById('oneYearElectric').innerText = gasCar.eOne;
+    document.getElementById('oneYearSavings').innerText = gasCar.savingOne;
+    
+    document.getElementById('threeYearGas').innerText = gasCar.gasThree;
+    document.getElementById('threeYearElectric').innerText = gasCar.eThree;
+    document.getElementById('threeYearSavings').innerText = gasCar.savingThree;
+    
+    document.getElementById('tenYearGas').innerText = gasCar.gasTen;
+    document.getElementById('tenYearElectric').innerText = gasCar.eTen;
+    document.getElementById('tenYearSavings').innerText = gasCar.savingTen;
+    // const chosenCar = JSON.parse(localStorage.getItem("chosenCar"));
+    
+    // Find the matching gasCarForElectricCar using the electricCar.carType
+    // let gasCarForElectricCar;
+    // if (chosenCar.carType.toLowerCase() === "suv") {
+    //   gasCarForElectricCar = gasCar.find((car) => car.id === 3); // SUV gas car
+    // } else if (chosenCar.carType.toLowerCase() === "crossover") {
+    //   gasCarForElectricCar = gasCar.find((car) => car.id === 4); // Crossover gas car
+    // } else if (chosenCar.carType.toLowerCase() === "truck") {
+    //   gasCarForElectricCar = gasCar.find((car) => car.id === 2); // Truck gas car
+    // } else if (chosenCar.carType.toLowerCase() === "sedan") {
+    //   gasCarForElectricCar = gasCar.find((car) => car.id === 1); // Sedan gas car
+    // }
+    
+    // // Populate the table with the data from gasCarForElectricCar
+    // document.getElementById("eimg").src = chosenCar.carImage;
+    // document.getElementById("gimg").src = gasCarForElectricCar.img;
+    // document.getElementById("gasName").innerText = gasCarForElectricCar.carName;
+    // document.getElementById("oneYearGas").innerText = gasCarForElectricCar.gasOne;
+    // document.getElementById("electricName").innerText = chosenCar.carName;
+    // document.getElementById("oneYearElectric").innerText =
+    //   gasCarForElectricCar.eOne;
+    // document.getElementById("oneYearSavings").innerText =
+    //   gasCarForElectricCar.savingOne;
+    
+    // document.getElementById("threeYearGas").innerText =
+    //   gasCarForElectricCar.gasThree;
+    // document.getElementById("threeYearElectric").innerText =
+    //   gasCarForElectricCar.eThree;
+    // document.getElementById("threeYearSavings").innerText =
+    //   gasCarForElectricCar.savingThree;
+    
+    // document.getElementById("tenYearGas").innerText = gasCarForElectricCar.gasTen;
+    // document.getElementById("tenYearElectric").innerText =
+    //   gasCarForElectricCar.eTen;
+    // document.getElementById("tenYearSavings").innerText =
+    //   gasCarForElectricCar.savingTen;
+    
+ 
   }
-
-  // Populate the table with the data from gasCarForElectricCar
-  document.getElementById("eimg").src = chosenCar.carImage;
-  document.getElementById("gimg").src = gasCarForElectricCar.img;
-  document.getElementById("gasName").innerText = gasCarForElectricCar.carName;
-  document.getElementById("oneYearGas").innerText = gasCarForElectricCar.gasOne;
-  document.getElementById("electricName").innerText = chosenCar.carName;
-  document.getElementById("oneYearElectric").innerText =
-    gasCarForElectricCar.eOne;
-  document.getElementById("oneYearSavings").innerText =
-    gasCarForElectricCar.savingOne;
-
-  document.getElementById("threeYearGas").innerText =
-    gasCarForElectricCar.gasThree;
-  document.getElementById("threeYearElectric").innerText =
-    gasCarForElectricCar.eThree;
-  document.getElementById("threeYearSavings").innerText =
-    gasCarForElectricCar.savingThree;
-
-  document.getElementById("tenYearGas").innerText = gasCarForElectricCar.gasTen;
-  document.getElementById("tenYearElectric").innerText =
-    gasCarForElectricCar.eTen;
-  document.getElementById("tenYearSavings").innerText =
-    gasCarForElectricCar.savingTen;
 }
